@@ -22,11 +22,6 @@ class FlaskTest(unittest.TestCase):
         print(response.content_type)
         self.assertEqual(response.content_type, 'application/json')
 
-    def test_content_data(self):
-        tester = app.test_client(self)
-        response = tester.get('/io')
-        self.assertTrue(b'id' in response.data)
-
 
     def test_content_length(self):
         tester = app.test_client(self)
