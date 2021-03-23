@@ -68,12 +68,9 @@ def get_tasks():
         print('Yes')
         print('Yes')
         print('Yes')
-<<<<<<< HEAD
-=======
         print('Yes')
         print('Yes')
         print('Yes')
->>>>>>> origin/master
 
     return jsonify({'tasks': tasks})
 
