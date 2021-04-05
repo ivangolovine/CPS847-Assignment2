@@ -1,8 +1,19 @@
+sudo: required
 language: python
 python:
-  - "3.7"
-install: "pip install -r requirement.txt"
-script: coverage run unittest_api.py
-after_success: bash <(curl -s https://codecov.io/bash)
-
-
+- '3.7'
+env:
+  global:
+  - secure: KvcDVyOitNl6S4iZgzNo5t1WAUojWD1+pnxEam1tEhQTYAV5/iM2yLITGRxGAbBFfW9Wd9Cu5ZFaiQQReKZ3ke6kkuNKsWzWnYaKFq3mJfb5nsnJbi2EI46LtBo1GJHJcyPeJq+ohimxjw3aSwm7SfywqOWmoC6K+O7Vb6xIvwQlQ/KYw2vSPIGGReauKx6iBMxK5n65MdGzvAFdcMw3hKtC5T/F5wUNnQatZcnZERBS+ahv6HE/c3SFvLQ68ytMxmzAmDqAlZ2Y/MJa+YQitdt/sr3HwRWoLqyKPCsk8Tc7+ZwrWfFqVI18VaeV5DgJBLO5YoL85LC6LDK3Tg/Efq9MLhy7DJ0S95ss3Cnl+vnDeGWUub8JouwF0ndbBvNXqIhf4f022W5DdEJv2fnkA2KQeord2mRF/FYUZgoIaKttrh73miSrusSyQHPuo/z8WPhQOEgxvvwl5Q5d8GFdwxjCRBvkFM7BrjV8jaW+gs/h9XZyPTbuvFmvk8yOdBwvQrv3Ny5mpY2bhzujjRh325USnbMMaVZScpLoUg7wAG4gLbGaaW7slanVNkKhV4TavmUWgWnCv8+QoN98NIhbxVdfNzVwAq9W+Pa63JPB3MI8waNCkDefYee1SlVRUy9EC9+MzU7cwj0zSY77r9QqZiUlr9txQjiRRQ9MjEFy2gg=
+  - secure: AVUQrLP6RZBeCKWBvZy4gYCJ3n+jZ8J/R2OqrK4qfUVU4hBL6WIFIqZkACXkUNztMTZKp0nsSSQCcJuYCTry8vPBKYqjVE92P51y5nNXmWTiId5MQC71PjU21kTrNaNhWTWsAbrcAU8cGF8nxph/zSYfgM1KCG/BhK1hGGXV1jeUIaNZkYvSrybQEsPjuRkL4nZRnRyuv95PuU7FiZFhHGiGhXbYtCXCpEsMVVwBgTo0XUTDu2tg6rELndHsYptxkCQQLoJ3/VNIMSIsmSjnW32beewIbkgccPN95jLcGTC437m9242cIQofRE76PTdb6Kmz+bklYuebgfdiDKcP+Y23wki6WaLJMVdwSH6ohNWMcysn+UC/TQ8AO+6gykwUh8TTb6uqTkyYItrNRCW8y8RlUTQg7exzqLVy4BkhT1CArCW7e6aN5Bf+PK1Ol/o5hMBrzEbf0ZRx2x28TtVtqmicmns7edu8Nr1+TTJZtO4kHyY8ImxiTPP3TrMsaW+7DWVHUDJ2MEnixz2m7ilZ4F5l6hu2ei7tS9QvJrIFN3QMLApotomxSABC42C6c4B7v5cxfF6I1nFm9h9h+Yx8bgArVZWAtHTagicc7L3/a6t7wZ5k5jmgOg3Eh2xagae1fFMXlMGJEy7DrIgHdlZgjqeUqditLapjTmAYF5SYiag=
+services:
+- docker
+install: pip install -r requirements.txt
+script:
+- coverage run unittest_api.py
+- docker build -t $DOCKER_ID/a2 .
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+- docker logout
+- echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+- docker push $DOCKER_ID/a2

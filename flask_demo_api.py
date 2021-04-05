@@ -67,9 +67,6 @@ def get_tasks():
         print('Yes')
         print('Yes')
         print('Yes')
-        print('Yes')
-        print('Yes')
-        print('Yes')
 
     return jsonify({'tasks': tasks})
 
@@ -78,4 +75,4 @@ def index():
     return "Hello, World!"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
