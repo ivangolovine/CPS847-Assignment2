@@ -11,4 +11,4 @@ RUN pip3 install -r requirement.txt --no-cache-dir
 
 COPY . /app
 
-CMD ["python3","flask_demo_api.py"]
+CMD ["python3","flask_demo_api.py","app.py"]
