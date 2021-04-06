@@ -23,8 +23,8 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
-  app: "test"
-  env: "Test1-env"
+  app: "assignment"
+  env: "Assignment-env"
   bucket_name: "elasticbeanstalk-us-east-2-238413349601"
   on:
     branch: master
