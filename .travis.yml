@@ -10,14 +10,14 @@ install: "pip install -r requirement.txt"
 
 script:
 - coverage run unittest_api.py
-- docker image build -t "$DOCKER_ID"/cps847-group6-assignment2 .
+- docker image build -t $DOCKER_ID/cps847-group6-assignment2 .
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   #log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #take built images and push to DOcker hub
-  - docker push "$DOCKER_ID"/cps847-group6-assignment2
+  - docker push $DOCKER_ID/cps847-group6-assignment2
   #test
 
 deploy:
