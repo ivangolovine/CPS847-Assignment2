@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify
+from flask import Flask, render_template
 app = Flask(__name__)
 tasks = [
     {
@@ -75,7 +76,8 @@ def get_tasks():
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    #return "Hello, World!"
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
