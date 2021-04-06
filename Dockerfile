@@ -1,14 +1,12 @@
 FROM python:3.6.1
-
-ENV LISTEN_PORT=5000
-EXPOSE 5000
-
+# define the present working directory
 WORKDIR /app
+# copy the contents into the working dir
+ADD . /app
+# run pip to install the dependencies of the flask app
+RUN pip install -r requirement.txt
+# define the command to start the container
 
-COPY requirement.txt /app
-
-RUN pip3 install -r requirement.txt --no-cache-dir
-
-COPY . /app
+EXPOSE 5000
 
 CMD ["python3","flask_demo_api.py"]
