@@ -2,4 +2,3 @@ Flask
 requests
 coverage
 boto3
-Flask==0.12
