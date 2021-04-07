@@ -20,6 +20,7 @@ after_success:
   - docker push zaidalica/cps847-group6-assignment2
   #test
 
+
 deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
