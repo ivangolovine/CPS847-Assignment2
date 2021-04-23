@@ -10,24 +10,25 @@ install: "pip install -r requirement.txt"
 
 script:
 - coverage run unittest_api.py
-- docker image build -t zaidalica/cps847-group6-assignment2 .
-
+#- docker image build -t zaidalica/cps847-group6-assignment2 .
+- docker image build -t igolv98/assiggrouptest123 .
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   #log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #take built images and push to DOcker hub
-  - docker push zaidalica/cps847-group6-assignment2
+  #- docker push zaidalica/cps847-group6-assignment2
+  - docker push igolv98/assiggrouptest123
   #test
 
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-2"
-  app: "assignment"
-  env: "Assignment-env"
-  bucket_name: "elasticbeanstalk-us-east-2-238413349601"
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+#deploy:
+ # provider: elasticbeanstalk
+  #region: "us-east-2"
+  #app: "assignment"
+  #env: "Assignment-env"
+  #bucket_name: "elasticbeanstalk-us-east-2-238413349601"
+  #on:
+  #  branch: master
+  #access_key_id: $AWS_ACCESS_KEY
+  #secret_access_key: $AWS_SECRET_KEY
